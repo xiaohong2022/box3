@@ -1,2 +1,2 @@
-# box3-voxels-viewer
-Box3 方块查看器
+# box3
+本人制作的 Box3小工具
