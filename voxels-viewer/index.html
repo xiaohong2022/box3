@@ -1,451 +1,454 @@
-<html>
+<!DOCTYPE html>
+<html lang="zh">
 
 <head>
-    <title>Box3 方块查看器</title>
-    <style>
-        .app {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            color: #fff;
-            background: #555;
-            display: flex;
-            flex-direction: column;
-        }
+	<!-- SOUL:我帮你弄了一下标题图标 -->
+	<title>Box3 方块查看器</title>
+	<link rel="icon" href="https://box3.codemao.cn/favicon.ico" type="icon">
+	<style>
+		.app {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			color: #fff;
+			background: #555;
+			display: flex;
+			flex-direction: column;
+		}
 
-        .app-body {
-            display: flex;
-            flex-direction: row;
-            width: 100%;
-            height: calc(100% - 50px);
-        }
+		.app-body {
+			display: flex;
+			flex-direction: row;
+			width: 100%;
+			height: calc(100% - 50px);
+		}
 
-        .app-body-left {
-            display: flex;
-            flex-direction: column;
-            border-right: solid 1px rgba(255, 255, 255, .25);
-            height: 100%;
-            width: 70px;
-        }
+		.app-body-left {
+			display: flex;
+			flex-direction: column;
+			border-right: solid 1px rgba(255, 255, 255, .25);
+			height: 100%;
+			width: 70px;
+		}
 
-        .app-body-right-select {
-            padding: 10px 0px;
-            cursor: pointer;
-            width: 100%;
-            text-align: center;
-        }
+		.app-body-right-select {
+			padding: 10px 0px;
+			cursor: pointer;
+			width: 100%;
+			text-align: center;
+		}
 
-        .app-title {
-            width: 100%;
-            height: 50px;
-            border-bottom: solid 1px rgba(255, 255, 255, .25);
-            display: flex;
-            align-items: center;
-            padding: 0px 20px;
-        }
+		.app-title {
+			width: 100%;
+			height: 50px;
+			border-bottom: solid 1px rgba(255, 255, 255, .25);
+			display: flex;
+			align-items: center;
+			padding: 0px 20px;
+		}
 
-        .app-body-right {
-            display: flex;
-            flex-direction: column;
-            width: 100%;
-            height: 100%;
-        }
+		.app-body-right {
+			display: flex;
+			flex-direction: column;
+			width: 100%;
+			height: 100%;
+		}
 
-        .app-body-right-bottom {
-            display: flex;
-            flex-wrap: wrap;
-            flex-direction: row;
-            width: 100%;
-            justify-content: flex-start;
-            align-content: flex-start;
-            align-items: flex-start;
-            overflow: auto;
-            height: calc(100% - 40px);
-        }
+		.app-body-right-bottom {
+			display: flex;
+			flex-wrap: wrap;
+			flex-direction: row;
+			width: 100%;
+			justify-content: flex-start;
+			align-content: flex-start;
+			align-items: flex-start;
+			overflow: auto;
+			height: calc(100% - 40px);
+		}
 
-        .app-body-right-bottom::-webkit-scrollbar {
-            display: none;
-        }
+		.app-body-right-bottom::-webkit-scrollbar {
+			display: none;
+		}
 
-        .app-body-right-top {
-            width: 100%;
-            height: 40px;
-            border-bottom: solid 1px rgba(255, 255, 255, .25);
-        }
+		.app-body-right-top {
+			width: 100%;
+			height: 40px;
+			border-bottom: solid 1px rgba(255, 255, 255, .25);
+		}
 
-        .app-body-right-bottom {
-            margin-top: 16px;
-        }
+		.app-body-right-bottom {
+			margin-top: 16px;
+		}
 
-        .app-body-right-bottom-block {
-            width: 108px;
-            height: 108px;
-            margin-bottom: 16px;
-            cursor: pointer;
-        }
+		.app-body-right-bottom-block {
+			width: 108px;
+			height: 108px;
+			margin-bottom: 16px;
+			cursor: pointer;
+		}
 
-        .app-body-right-bottom-block-block2 {
-            transform: translateY(32px);
-        }
+		.app-body-right-bottom-block-block2 {
+			transform: translateY(32px);
+		}
 
-        .app-body-right-bottom-block-express {
-            position: relative;
-            width: 16px;
-            height: 16px;
-            margin: 0 auto;
-            transform-style: preserve-3d;
-            image-rendering: pixelated;
-            transform: scale(3.8) rotateX(-15deg) rotateY(60deg);
-            transition: transform .5s ease-in-out;
-        }
+		.app-body-right-bottom-block-express {
+			position: relative;
+			width: 16px;
+			height: 16px;
+			margin: 0 auto;
+			transform-style: preserve-3d;
+			image-rendering: pixelated;
+			transform: scale(3.8) rotateX(-15deg) rotateY(60deg);
+			transition: transform .5s ease-in-out;
+		}
 
-        .app-body-right-bottom-block:hover .app-body-right-bottom-block-express {
-            transform: scale(4.2) rotateX(-15deg) rotateY(60deg);
-        }
+		.app-body-right-bottom-block:hover .app-body-right-bottom-block-express {
+			transform: scale(4.2) rotateX(-15deg) rotateY(60deg);
+		}
 
-        .app-body-right-bottom-block-express-front,
-        .app-body-right-bottom-block-express-after {
-            position: absolute;
-            width: 16px;
-            height: 16px;
-            transform: rotateY(-270deg) translateX(8px);
-            transform-origin: top right;
-        }
+		.app-body-right-bottom-block-express-front,
+		.app-body-right-bottom-block-express-after {
+			position: absolute;
+			width: 16px;
+			height: 16px;
+			transform: rotateY(-270deg) translateX(8px);
+			transform-origin: top right;
+		}
 
-        .app-body-right-bottom-block-express-front {
-            transform: rotateY(270deg) translateX(-8px);
-            transform-origin: center left;
-        }
+		.app-body-right-bottom-block-express-front {
+			transform: rotateY(270deg) translateX(-8px);
+			transform-origin: center left;
+		}
 
-        .app-body-right-bottom-block-express-under {
-            position: absolute;
-            width: 16px;
-            height: 16px;
-            transform: rotateX(90deg) translateY(8px);
-            transform-origin: bottom center;
-        }
+		.app-body-right-bottom-block-express-under {
+			position: absolute;
+			width: 16px;
+			height: 16px;
+			transform: rotateX(90deg) translateY(8px);
+			transform-origin: bottom center;
+		}
 
-        .app-body-right-bottom-block-express-upper {
-            position: absolute;
-            width: 16px;
-            height: 16px;
-            transform: rotateX(-90deg) rotateY(180deg) translateY(-8px);
-            transform-origin: top center;
-        }
+		.app-body-right-bottom-block-express-upper {
+			position: absolute;
+			width: 16px;
+			height: 16px;
+			transform: rotateX(-90deg) rotateY(180deg) translateY(-8px);
+			transform-origin: top center;
+		}
 
-        .app-body-right-bottom-block-express-right {
-            position: absolute;
-            width: 16px;
-            height: 16px;
-            transform: translateZ(8px);
-            box-shadow: inherit;
-        }
+		.app-body-right-bottom-block-express-right {
+			position: absolute;
+			width: 16px;
+			height: 16px;
+			transform: translateZ(8px);
+			box-shadow: inherit;
+		}
 
-        .app-body-right-bottom-block-express-left {
-            position: absolute;
-            width: 16px;
-            height: 16px;
-            transform: translateZ(-8px) rotateY(180deg);
-        }
+		.app-body-right-bottom-block-express-left {
+			position: absolute;
+			width: 16px;
+			height: 16px;
+			transform: translateZ(-8px) rotateY(180deg);
+		}
 
-        .app-body-right-bottom-block-text {
-            position: absolute;
-            bottom: -58px;
-            font-size: small;
-            width: 100%;
-            text-align: center;
-            color: #fff;
-            pointer-events: none;
-            z-index: 100;
-            transform: translate3d(0, 0, 200px);
-        }
+		.app-body-right-bottom-block-text {
+			position: absolute;
+			bottom: -58px;
+			font-size: small;
+			width: 100%;
+			text-align: center;
+			color: #fff;
+			pointer-events: none;
+			z-index: 100;
+			transform: translate3d(0, 0, 200px);
+		}
 
-        .app-body-right-select:hover {
-            background: #444;
-        }
+		.app-body-right-select:hover {
+			background: #444;
+		}
 
-        .app-body-right-select.app-body-right-selected {
-            background: #222;
-        }
+		.app-body-right-select.app-body-right-selected {
+			background: #222;
+		}
 
-        .app-body-right-top input {
-            border: none;
-            outline: none;
-            width: 100%;
-            height: 100%;
-            padding: 5px 15px;
-            font-size: 15px;
-            color: #fff;
-            background-color: #555;
-        }
+		.app-body-right-top input {
+			border: none;
+			outline: none;
+			width: 100%;
+			height: 100%;
+			padding: 5px 15px;
+			font-size: 15px;
+			color: #fff;
+			background-color: #555;
+		}
 
-        @keyframes background-move {
-            0% {
-                background-position: 0 0
-            }
+		@keyframes background-move {
+			0% {
+				background-position: 0 0
+			}
 
-            to {
-                background-position: -256px -256px
-            }
-        }
+			to {
+				background-position: -256px -256px
+			}
+		}
 
-        .app-body-right-bottom-block-express-liquid {
-            background-image: url(https://static.box3.codemao.cn/block/QmcaTTADicUScAaiaaXF2Eof397LZprBKQSBQJ6xiu97aD.png);
-            animation: background-move 10s infinite linear;
-        }
+		.app-body-right-bottom-block-express-liquid {
+			background-image: url(https://static.box3.codemao.cn/block/QmcaTTADicUScAaiaaXF2Eof397LZprBKQSBQJ6xiu97aD.png);
+			animation: background-move 10s infinite linear;
+		}
 
-        .dialog-shadow {
-            position: fixed;
-            z-index: 9999999999999;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #0008;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+		.dialog-shadow {
+			position: fixed;
+			z-index: 9999999999999;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: #0008;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
 
-        .dialog {
-            width: 80%;
-            height: 80%;
-            background: #555;
-            border-radius: 10px;
-            display: flex;
-            flex-direction: column;
-        }
+		.dialog {
+			width: 80%;
+			height: 80%;
+			background: #555;
+			border-radius: 10px;
+			display: flex;
+			flex-direction: column;
+		}
 
-        .dialog-title {
-            height: 50px;
-            background: #444;
-            border-radius: 10px 10px 0 0;
-            display: flex;
-            align-items: center;
-            padding: 0px 20px;
-        }
+		.dialog-title {
+			height: 50px;
+			background: #444;
+			border-radius: 10px 10px 0 0;
+			display: flex;
+			align-items: center;
+			padding: 0px 20px;
+		}
 
-        .dialog-title div {
-            position: absolute;
-            top: 5px;
-            right: 10px;
-            width: 40px;
-            height: 40px;
-            font-size: 25px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            color: #fff
-        }
+		.dialog-title div {
+			position: absolute;
+			top: 5px;
+			right: 10px;
+			width: 40px;
+			height: 40px;
+			font-size: 25px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			cursor: pointer;
+			color: #fff
+		}
 
-        .dialog-title {
-            position: relative;
-        }
+		.dialog-title {
+			position: relative;
+		}
 
-        .dialog-body {
-            display: flex;
-            flex-direction: column;
-            overflow: auto;
-        }
+		.dialog-body {
+			display: flex;
+			flex-direction: column;
+			overflow: auto;
+		}
 
-        .dialog-body-left {
-            width: 100%;
-            height: 200px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #444;
-        }
+		.dialog-body-left {
+			width: 100%;
+			height: 200px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			background: #444;
+		}
 
-        .dialog-body-right {
-            display: flex;
-            flex-direction: column;
-            padding: 30px 20px;
-            color: #fff
-        }
+		.dialog-body-right {
+			display: flex;
+			flex-direction: column;
+			padding: 30px 20px;
+			color: #fff
+		}
 
-        @keyframes rotate-animation {
-            0% {
-                transform: scale(3.8) rotateX(-15deg) rotateY(0deg);
-            }
+		@keyframes rotate-animation {
+			0% {
+				transform: scale(3.8) rotateX(-15deg) rotateY(0deg);
+			}
 
-            to {
-                transform: scale(3.8) rotateX(-15deg) rotateY(360deg);
-            }
-        }
+			to {
+				transform: scale(3.8) rotateX(-15deg) rotateY(360deg);
+			}
+		}
 
-        .dialog-body-left .app-body-right-bottom-block-express {
-            transform: scale(3.8) rotateX(-15deg) rotateY(60deg);
-            animation: rotate-animation 5s infinite linear;
-        }
+		.dialog-body-left .app-body-right-bottom-block-express {
+			transform: scale(3.8) rotateX(-15deg) rotateY(60deg);
+			animation: rotate-animation 5s infinite linear;
+		}
 
-        .codeWork {
-            border-radius: 5px;
-            text-align: left;
-            background: #151515;
-            padding: 9px 12px;
-            margin: 4px 2px;
-            color: #ffffff;
-            overflow: auto;
-            white-space: pre;
-            user-select: text;
-            font-family: source-code-pro, Menlo, Monaco, Consolas, Courier New, monospace
-        }
+		.codeWork {
+			border-radius: 5px;
+			text-align: left;
+			background: #151515;
+			padding: 9px 12px;
+			margin: 4px 2px;
+			color: #ffffff;
+			overflow: auto;
+			white-space: pre;
+			user-select: text;
+			font-family: source-code-pro, Menlo, Monaco, Consolas, Courier New, monospace
+		}
 
-        .codeWork::-webkit-scrollbar {
-            height: 5px
-        }
+		.codeWork::-webkit-scrollbar {
+			height: 5px
+		}
 
-        .codeWork::-webkit-scrollbar-thumb {
-            background: #bbb;
-            border-radius: 5px
-        }
+		.codeWork::-webkit-scrollbar-thumb {
+			background: #bbb;
+			border-radius: 5px
+		}
 
-        .codeWork::-webkit-scrollbar-thumb:hover {
-            background: #888
-        }
+		.codeWork::-webkit-scrollbar-thumb:hover {
+			background: #888
+		}
 
-        a::selection,
-        .codeWork::selection,
-        c::selection {
-            background-color: #ddd4
-        }
+		a::selection,
+		.codeWork::selection,
+		c::selection {
+			background-color: #ddd4
+		}
 
-        .codeStri {
-            color: #ce9178
-        }
+		.codeStri {
+			color: #ce9178
+		}
 
-        .codeChar {
-            color: #ffffff
-        }
+		.codeChar {
+			color: #ffffff
+		}
 
-        .codeCaps {
-            color: #3dc9b0
-        }
+		.codeCaps {
+			color: #3dc9b0
+		}
 
-        .codeChin {
-            color: #f44747
-        }
+		.codeChin {
+			color: #f44747
+		}
 
-        .codeAnot {
-            color: #608b4e
-        }
+		.codeAnot {
+			color: #608b4e
+		}
 
-        .codeImpo {
-            color: #569cd6
-        }
+		.codeImpo {
+			color: #569cd6
+		}
 
-        .codeNumb {
-            color: #b5cea8
-        }
+		.codeNumb {
+			color: #b5cea8
+		}
 
-        .dialog-body-right-information {
-            display: flex;
-            flex-direction: row;
-        }
+		.dialog-body-right-information {
+			display: flex;
+			flex-direction: row;
+		}
 
-        .dialog-body-right-information>div {
-            width: 50%;
-        }
+		.dialog-body-right-information>div {
+			width: 50%;
+		}
 
 
-        .dialog-body-right-codecreatevalue {
-            display: flex;
-            flex-direction: row;
-        }
+		.dialog-body-right-codecreatevalue {
+			display: flex;
+			flex-direction: row;
+		}
 
-        .dialog-body-right-codecreatevalue>input {
-            width: 50px;
-            background: #555;
-            border: solid 1px rgba(255, 255, 255, .25);
-            outline: none;
-            color: #fff
-        }
+		.dialog-body-right-codecreatevalue>input {
+			width: 50px;
+			background: #555;
+			border: solid 1px rgba(255, 255, 255, .25);
+			outline: none;
+			color: #fff
+		}
 
-        .dialog-body-right-codecreatevalue>* {
-            margin: 0px 5px;
-        }
-    </style>
+		.dialog-body-right-codecreatevalue>* {
+			margin: 0px 5px;
+		}
+	</style>
 </head>
 
 <body>
-    <div class="app">
-        <div class="app-title">Box3 方块查看器</div>
-        <div class="app-body">
-            <div class="app-body-left"></div>
-            <div class="app-body-right">
-                <div class="app-body-right-top"><input placeholder="搜索"></div>
-                <div class="app-body-right-bottom"></div>
-            </div>
-        </div>
-    </div>
-    <div class="dialog-shadow" style="display: none;">
-        <div class="dialog">
-            <div class="dialog-title"><span></span>
-                <div>×</div>
-            </div>
-            <div class="dialog-body">
-                <div class="dialog-body-left">
-                    <div class="app-body-right-bottom-block">
-                        <div class="app-body-right-bottom-block-block2">
-                            <div class="app-body-right-bottom-block-express">
-                                <div class="app-body-right-bottom-block-express-front "
-                                    style="background: url(https://static.box3.codemao.cn/block/Qmf9RUjWqUEE1rFEKrdEWVYon5FHYLHGyBcMLq441tSjfV.png) -320px -64px;box-shadow: none;">
-                                </div>
-                                <div class="app-body-right-bottom-block-express-after "
-                                    style="background:url(https://static.box3.codemao.cn/block/Qmf9RUjWqUEE1rFEKrdEWVYon5FHYLHGyBcMLq441tSjfV.png) -320px -64px;box-shadow: none;">
-                                </div>
-                                <div class="app-body-right-bottom-block-express-under "
-                                    style="background: url(https://static.box3.codemao.cn/block/Qmf9RUjWqUEE1rFEKrdEWVYon5FHYLHGyBcMLq441tSjfV.png) -320px -64px;box-shadow: none;">
-                                </div>
-                                <div class="app-body-right-bottom-block-express-upper "
-                                    style="background: url(https://static.box3.codemao.cn/block/Qmf9RUjWqUEE1rFEKrdEWVYon5FHYLHGyBcMLq441tSjfV.png) -320px -64px;box-shadow: none;">
-                                </div>
-                                <div class="app-body-right-bottom-block-express-right "
-                                    style="background: url(https://static.box3.codemao.cn/block/Qmf9RUjWqUEE1rFEKrdEWVYon5FHYLHGyBcMLq441tSjfV.png) -320px -64px;box-shadow: none;">
-                                </div>
-                                <div class="app-body-right-bottom-block-express-left "
-                                    style="background: url(https://static.box3.codemao.cn/block/Qmf9RUjWqUEE1rFEKrdEWVYon5FHYLHGyBcMLq441tSjfV.png) -320px -64px;box-shadow: none;">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="dialog-body-right">
-                    <h3>方块信息</h3>
-                    <div class="dialog-body-right-information">
-                        <div>
-                            <div>名称</div>
-                            <div class="codeWork dialog-body-right-information-name">sand</div>
-                        </div>
-                        <div>
-                            <div>ID</div>
-                            <div class="codeWork"><a class="codeNumb dialog-body-right-information-id">135</a></div>
-                        </div>
-                    </div>
-                    <h3>建造方块代码</h3>
-                    <div class="dialog-body-right-codecreatevalue">
-                        x<input type="number" value="0" class="dialog-body-right-codecreatevalue-x">
+	<div class="app">
+		<div class="app-title">Box3 方块查看器</div>
+		<div class="app-body">
+			<div class="app-body-left"></div>
+			<div class="app-body-right">
+				<div class="app-body-right-top"><input placeholder="搜索"></div>
+				<div class="app-body-right-bottom"></div>
+			</div>
+		</div>
+	</div>
+	<div class="dialog-shadow" style="display: none;">
+		<div class="dialog">
+			<div class="dialog-title"><span></span>
+				<div>×</div>
+			</div>
+			<div class="dialog-body">
+				<div class="dialog-body-left">
+					<div class="app-body-right-bottom-block">
+						<div class="app-body-right-bottom-block-block2">
+							<div class="app-body-right-bottom-block-express">
+								<div class="app-body-right-bottom-block-express-front "
+									style="background: url(https://static.box3.codemao.cn/block/Qmf9RUjWqUEE1rFEKrdEWVYon5FHYLHGyBcMLq441tSjfV.png) -320px -64px;box-shadow: none;">
+								</div>
+								<div class="app-body-right-bottom-block-express-after "
+									style="background:url(https://static.box3.codemao.cn/block/Qmf9RUjWqUEE1rFEKrdEWVYon5FHYLHGyBcMLq441tSjfV.png) -320px -64px;box-shadow: none;">
+								</div>
+								<div class="app-body-right-bottom-block-express-under "
+									style="background: url(https://static.box3.codemao.cn/block/Qmf9RUjWqUEE1rFEKrdEWVYon5FHYLHGyBcMLq441tSjfV.png) -320px -64px;box-shadow: none;">
+								</div>
+								<div class="app-body-right-bottom-block-express-upper "
+									style="background: url(https://static.box3.codemao.cn/block/Qmf9RUjWqUEE1rFEKrdEWVYon5FHYLHGyBcMLq441tSjfV.png) -320px -64px;box-shadow: none;">
+								</div>
+								<div class="app-body-right-bottom-block-express-right "
+									style="background: url(https://static.box3.codemao.cn/block/Qmf9RUjWqUEE1rFEKrdEWVYon5FHYLHGyBcMLq441tSjfV.png) -320px -64px;box-shadow: none;">
+								</div>
+								<div class="app-body-right-bottom-block-express-left "
+									style="background: url(https://static.box3.codemao.cn/block/Qmf9RUjWqUEE1rFEKrdEWVYon5FHYLHGyBcMLq441tSjfV.png) -320px -64px;box-shadow: none;">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="dialog-body-right">
+					<h3>方块信息</h3>
+					<div class="dialog-body-right-information">
+						<div>
+							<div>名称</div>
+							<div class="codeWork dialog-body-right-information-name">sand</div>
+						</div>
+						<div>
+							<div>ID</div>
+							<div class="codeWork"><a class="codeNumb dialog-body-right-information-id">135</a></div>
+						</div>
+					</div>
+					<h3>建造方块代码</h3>
+					<div class="dialog-body-right-codecreatevalue">
+						x<input type="number" value="0" class="dialog-body-right-codecreatevalue-x">
                         y<input type="number" value="0" class="dialog-body-right-codecreatevalue-y">
                         z<input type="number" value="0" class="dialog-body-right-codecreatevalue-z">
-                        <label>
+						<label>
                             <input type="checkbox" class="dialog-body-right-codecreatevalue-v" checked>
                             使用方块ID
                         </label>
-                    </div>
-                    <div class="codeWork">voxels.setVoxel(<a class="codeNumb dialog-body-right-codecreate-x">0</a>, <a
-                            class="codeNumb dialog-body-right-codecreate-y">0</a>, <a
-                            class="codeNumb dialog-body-right-codecreate-z">0</a>, <a
-                            class="codeNumb dialog-body-right-codecreate-v">135</a>)</div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <script>
-        !function () {
+					</div>
+					<div class="codeWork">voxels.setVoxel(<a class="codeNumb dialog-body-right-codecreate-x">0</a>, <a
+							class="codeNumb dialog-body-right-codecreate-y">0</a>, <a
+							class="codeNumb dialog-body-right-codecreate-z">0</a>, <a
+							class="codeNumb dialog-body-right-codecreate-v">135</a>)</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script>
+		!function () {
             const input = document.querySelector(".app-body-right-top input");
             input.oninput = () => {
                 for (const e of document.querySelectorAll(".app-body-right-bottom>*")) {
@@ -15807,7 +15810,7 @@
                 addVoxelsGroup(v);
             });
         }()
-    </script>
+	</script>
 </body>
 
 </html>
