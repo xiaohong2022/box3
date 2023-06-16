@@ -1,6 +1,6 @@
 /*
  * ============================================================================== *
- ******************************* 新编辑器汉化 v1.0.0 ******************************
+ ******************************* 新编辑器汉化 v1.2.0 ******************************
  ************************ Copyright (C) 2023 xiaohong2022 *************************
  * ============================================================================== *
 */
@@ -8,8 +8,8 @@
 // ==UserScript==
 // @name         新模型编辑器汉化
 // @namespace    http://box3.codemao.cn/
-// @version      1.0.0
-// @description  新模型编辑器汉化！再也不担心看不同英文了！
+// @version      1.2.0
+// @description  新模型编辑器汉化！再也不担心看不懂英文了！
 // @author       小宏XeLa，特别鸣谢：冷鱼与热猫，吉吉喵
 // @license      GPL
 // @match        *://dao3.fun/edit-model
@@ -26,9 +26,10 @@
     var temp = document.documentElement.innerHTML;
     setInterval(() => {
         if (temp !== document.documentElement.innerHTML) {
+            if(document.querySelector("#treeNode-ROOT_BONE > div > div > div")){document.querySelector("#treeNode-ROOT_BONE > div > div > div").innerText="全部骨骼"}
             var a = [].slice.call(document.all)
-                .filter(v => v.children.length === 0 && v.innerHTML !== "")
-                .filter(v => !["style", "link", "noscript", "script", "meta", "canvas", "use"].includes(v.localName));
+            .filter(v => v.children.length === 0 && v.innerHTML !== "")
+            .filter(v => !["style", "link", "noscript", "script", "meta", "canvas", "use"].includes(v.localName));
             [].slice.call(document.all).forEach(e => {
                 if (e.parentElement) {
                     if (e.parentElement.classList.contains("style_name__GhlvZ")) return;
@@ -38,7 +39,7 @@
                     var d = null;
                     switch (ee.nodeValue) {
                         case "Cannot trim bounding area without model":
-                            d = "空模型无法修剪边界区域";
+                            d = "空的模型无法修剪边界区域";
                             break;
                         case "Color":
                             d = "颜色";
@@ -50,22 +51,22 @@
                             d = "属性";
                             break;
                         case "Launching...":
-                            d = "加载中...";
+                            d = "正在加载中...";
                             break;
                         case "Successfully saved":
-                            d = "保存成功";
+                            d = "保存成功！";
                             break;
                         case "Successfully published":
-                            d = "发布成功";
+                            d = "发布成功！";
                             break;
                         case "Failed saved":
-                            d = "保存出错";
+                            d = "保存出错！";
                             break;
                         case "Failed published":
-                            d = "发布出错";
+                            d = "发布出错！";
                             break;
                         case "Failed to export":
-                            d = "导出失败";
+                            d = "导出失败！";
                             break;
                         case "Today":
                             d = "今天";
@@ -119,7 +120,7 @@
                             d = "规模因子";
                             break;
                         case "It has exceeded the Maximum size.":
-                            d = "它已经超过了最大大小";
+                            d = "已到达最大大小";
                             break;
                         case "Euler Angle":
                             d = "欧拉角";
@@ -128,7 +129,7 @@
                             d = "触摸设备？";
                             break;
                         case "The space required by the current model:":
-                            d = "当前模型所需的空间:";
+                            d = "当前模型所需空间：";
                             break;
                         case "Apply Rotation":
                             d = "应用旋转";
@@ -136,12 +137,15 @@
                         case "Retry":
                             d = "重新尝试";
                             break;
+                        case "drag and drop for this item is only available in setup mode":
+                            d = "温馨提示：此项目的拖放仅在设置模式下可用";
+                            break;
                     };
                     if (d) {
                         ee.nodeValue = d;
                     };
-                })
-            })
+                });
+            });
             a.forEach(e => {
                 if (e.parentElement) {
                     if (e.parentElement.classList.contains("style_name__GhlvZ")) return
@@ -163,7 +167,7 @@
                                 d = "编辑";
                                 break;
                             case "Motion":
-                                d = "动作";
+                                d = "动画";
                                 break;
                             case "Local Mode":
                                 d = "部件或骨骼轴";
@@ -205,19 +209,19 @@
                                 d = "翻转 Z";
                                 break;
                             case "Flip along the X-axis":
-                                d = "沿X轴翻转";
+                                d = "沿 X 轴翻转";
                                 break;
                             case "Flip along the Y-axis":
-                                d = "沿Y轴翻转";
+                                d = "沿 Y 轴翻转";
                                 break;
                             case "Flip along the Z-axis":
-                                d = "沿Z轴翻转";
+                                d = "沿 Z 轴翻转";
                                 break;
                             case "Import model to object":
                                 d = "导入模型";
                                 break;
                             case "Import VOX":
-                                d = "导入VOX作品 (.vox)";
+                                d = "导入 VOX 作品 (.vox)";
                                 break;
                             case "Export GLTF":
                                 d = "导出为 GLTF";
@@ -250,7 +254,7 @@
                                 d = "创建骨骼";
                                 break;
                             case "Create a new bone":
-                                d = "创建一个新骨骼，用于动作编辑";
+                                d = "创建一个新骨骼，用于动画编辑";
                                 break;
                             case "New Color Group":
                                 d = "建造新色卡";
@@ -265,7 +269,7 @@
                                 d = "清除";
                                 break;
                             case "Add object":
-                                d = "添加部件";
+                                d = "建造部件";
                                 break;
                             case "Edit object":
                                 d = "编辑部件";
@@ -325,16 +329,16 @@
                                 d = "正交";
                                 break;
                             case "Create motion":
-                                d = "建造新动作";
+                                d = "建造新动画";
                                 break;
                             case "Create keyframe":
                                 d = "建造新帧";
                                 break;
                             case "Motions":
-                                d = "动作";
+                                d = "导览";
                                 break;
                             case "Hierarchies":
-                                d = "分类";
+                                d = "骨骼";
                                 break;
                             case "Last keyframe":
                                 d = "滑到最后";
@@ -370,13 +374,13 @@
                                 d = "旋转 Z";
                                 break;
                             case "Rotate 90° around Z-axis":
-                                d = "围绕Z轴旋转90°";
+                                d = "围绕 Z 轴旋转90°";
                                 break;
                             case "Rotate 90° around X-axis":
-                                d = "围绕X轴旋转90°";
+                                d = "围绕 X 轴旋转90°";
                                 break;
                             case "Rotate 90° around Y-axis":
-                                d = "围绕Y轴旋转90°";
+                                d = "围绕 Y 轴旋转90°";
                                 break;
                             case "Mirror X":
                                 d = "镜像对称 X";
@@ -533,10 +537,10 @@
                                 d = "确认回潮到以前的版本？";
                                 break;
                             case "Delete the motion":
-                                d = "删除动作";
+                                d = "删除动画";
                                 break;
                             case "Confirm to delete the motion":
-                                d = "确认要删除该动作吗";
+                                d = "确认要删除该动画吗？";
                                 break;
                             case "Delete color group":
                                 d = "删除颜色组";
@@ -552,16 +556,26 @@
                                 d = "透明度";
                                 break;
                             case "No Project":
-                                d = "空空如也";
+                                d = "暂无历史记录";
                                 break;
                             case "Back to Object":
-                                d = "返回";
+                                d = "返回编辑区";
                                 break;
                         }
                         break;
                 };
                 if (d) {
                     e.innerText = d;
+                };
+            });
+            document.querySelectorAll("div.style_time__cUcxV > span:nth-child(1)").forEach(e=>{
+                var x = e.innerText;
+                if(x.includes(", ")){
+                    var y = x.split(", ")[1];
+                    var m = x.split(" ")[0];
+                    var d = x.split(" ")[1].split(",")[0];
+                    var w = ["Jan.", "Feb.", "Mar.", "Apr.", "May", "Jun.", "Jul.", "Aug.", "Sept.", "Oct.", "Nov.", "Dec."];
+                    e.innerText=`${y}年${w.indexOf(m)+1}月${d}日`;
                 };
             });
             temp = document.documentElement.innerHTML;
