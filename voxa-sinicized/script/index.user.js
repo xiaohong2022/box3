@@ -1,6 +1,6 @@
 /*
  * ============================================================================== *
- ******************************* 新编辑器汉化 v1.2.0 ******************************
+ ******************************* 新编辑器汉化 v1.3.0 ******************************
  ************************ Copyright (C) 2023 xiaohong2022 *************************
  * ============================================================================== *
 */
@@ -8,11 +8,12 @@
 // ==UserScript==
 // @name         新模型编辑器汉化
 // @namespace    http://box3.codemao.cn/
-// @version      1.2.0
+// @version      1.3.0
 // @description  新模型编辑器汉化！再也不担心看不懂英文了！
 // @author       小宏XeLa，特别鸣谢：冷鱼与热猫，吉吉喵
 // @license      GPL
 // @match        *://dao3.fun/edit-model
+// @match        *://dao3.fun/edit-model/*
 // @match        *://dao3.fun/edit-model?frombox=1
 // @match        *://dao3.fun/edit-model/*?frombox=1
 // @match        *://voxa.dao3.fun/
@@ -139,6 +140,18 @@
                             break;
                         case "drag and drop for this item is only available in setup mode":
                             d = "温馨提示：此项目的拖放仅在设置模式下可用";
+                            break;
+                        case "Extrude":
+                            d = "挤压";
+                            break;
+                        case "Right click to remove the hint.":
+                            d = "右键单击即可去掉提示";
+                            break;
+                        case "Please adjust the model to fit into VoxelEditor's workspace.":
+                            d = "请调整模型以适应工作区";
+                            break;
+                        case "Voxelize":
+                            d = "体素化";
                             break;
                     };
                     if (d) {
@@ -335,7 +348,7 @@
                                 d = "建造新帧";
                                 break;
                             case "Motions":
-                                d = "导览";
+                                d = "列表";
                                 break;
                             case "Hierarchies":
                                 d = "骨骼";
@@ -401,10 +414,10 @@
                                 d = "开启 Z 坐标 镜像对称模式";
                                 break;
                             case "Show Edges":
-                                d = "显示边界";
+                                d = "显示轮廓";
                                 break;
                             case "Hide Edges":
-                                d = "隐藏边界";
+                                d = "隐藏轮廓";
                                 break;
                             case "Grids":
                                 d = "显示网格";
