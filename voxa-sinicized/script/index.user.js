@@ -1,6 +1,6 @@
 /*
  * ============================================================================== *
- ******************************* 新编辑器汉化 v1.3.0 ******************************
+ ******************************* 新编辑器汉化 v1.4.0 ******************************
  ************************ Copyright (C) 2023 xiaohong2022 *************************
  * ============================================================================== *
 */
@@ -8,7 +8,7 @@
 // ==UserScript==
 // @name         新模型编辑器汉化
 // @namespace    http://box3.codemao.cn/
-// @version      1.3.0
+// @version      1.4.0
 // @description  新模型编辑器汉化！再也不担心看不懂英文了！
 // @author       小宏XeLa，特别鸣谢：冷鱼与热猫，吉吉喵
 // @license      GPL
@@ -40,7 +40,7 @@
                     var d = null;
                     switch (ee.nodeValue) {
                         case "Cannot trim bounding area without model":
-                            d = "空的模型无法修剪边界区域";
+                            d = "空的模型无法修剪边界区域！";
                             break;
                         case "Color":
                             d = "颜色";
@@ -115,13 +115,13 @@
                             d = "天";
                             break;
                         case "Restored":
-                            d = "回潮成功";
+                            d = "回潮成功！";
                             break;
                         case "Scale factor":
                             d = "规模因子";
                             break;
                         case "It has exceeded the Maximum size.":
-                            d = "已到达最大大小";
+                            d = "已到达最大大小！";
                             break;
                         case "Euler Angle":
                             d = "欧拉角";
@@ -145,10 +145,10 @@
                             d = "挤压";
                             break;
                         case "Right click to remove the hint.":
-                            d = "右键单击即可去掉提示";
+                            d = "右键单击即可去掉提示！";
                             break;
                         case "Please adjust the model to fit into VoxelEditor's workspace.":
-                            d = "请调整模型以适应工作区";
+                            d = "请调整模型以适应工作区！";
                             break;
                         case "Voxelize":
                             d = "体素化";
@@ -222,16 +222,16 @@
                                 d = "翻转 Z";
                                 break;
                             case "Flip along the X-axis":
-                                d = "沿 X 轴翻转";
+                                d = "沿 X 轴翻转。";
                                 break;
                             case "Flip along the Y-axis":
-                                d = "沿 Y 轴翻转";
+                                d = "沿 Y 轴翻转。";
                                 break;
                             case "Flip along the Z-axis":
-                                d = "沿 Z 轴翻转";
+                                d = "沿 Z 轴翻转。";
                                 break;
                             case "Import model to object":
-                                d = "导入模型";
+                                d = "导入模型文件";
                                 break;
                             case "Import VOX":
                                 d = "导入 VOX 作品 (.vox)";
@@ -255,19 +255,19 @@
                                 d = "建造";
                                 break;
                             case "Create a new object":
-                                d = "建造一个新部件，用于模型编辑";
+                                d = "建造一个新部件，用于模型编辑。";
                                 break;
                             case "Make a Copy":
                                 d = "复制";
                                 break;
                             case "Make a copy of the selection":
-                                d = "复制所选的部件";
+                                d = "复制所选的部件。";
                                 break;
                             case "Create Bone":
                                 d = "创建骨骼";
                                 break;
                             case "Create a new bone":
-                                d = "创建一个新骨骼，用于动画编辑";
+                                d = "创建一个新骨骼，用于动画编辑。";
                                 break;
                             case "New Color Group":
                                 d = "建造新色卡";
@@ -312,10 +312,10 @@
                                 d = "删除";
                                 break;
                             case "Undo":
-                                d = "撤销（Ctrl+Z）";
+                                d = "撤销";
                                 break;
                             case "Redo":
-                                d = "重做（Ctrl+Y）";
+                                d = "重做";
                                 break;
                             case "Emissive":
                                 d = "启用模型发光";
@@ -375,7 +375,7 @@
                                 d = "修减";
                                 break;
                             case "Shrink bounding box to fit voxels":
-                                d = "删除空的区域以适合模型";
+                                d = "删除空的区域以适合模型。";
                                 break;
                             case "Rotate Y":
                                 d = "旋转 Y";
@@ -405,13 +405,13 @@
                                 d = "镜像对称 Z";
                                 break;
                             case "Toggle mirror on X-axis":
-                                d = "开启 X 坐标 镜像对称模式";
+                                d = "开启 X 坐标 镜像对称模式。";
                                 break;
                             case "Toggle mirror on Y-axis":
-                                d = "开启 Y 坐标 镜像对称模式";
+                                d = "开启 Y 坐标 镜像对称模式。";
                                 break;
                             case "Toggle mirror on Z-axis":
-                                d = "开启 Z 坐标 镜像对称模式";
+                                d = "开启 Z 坐标 镜像对称模式。";
                                 break;
                             case "Show Edges":
                                 d = "显示轮廓";
@@ -426,19 +426,19 @@
                                 d = "复制";
                                 break;
                             case "Move voxels in X/Y/Z-axis":
-                                d = "沿轴线移动所选体素块。如果没有选择体素块，它将移动整个模型。";
+                                d = "沿轴线移动所选体素块。如果没有选择，将移动整个模型。";
                                 break;
                             case "Marquee Select":
                                 d = "区域选择";
                                 break;
                             case "Select target area":
-                                d = "点击鼠标左键通过选区或方框选择体素块，在所选区域外点击可取消选择。";
+                                d = "点击鼠标左键通过选区选择体素块，在所选区域外点击可取消选择。";
                                 break;
                             case "Voxel Select":
                                 d = "方块选择";
                                 break;
                             case "Select target voxels":
-                                d = "选择指定方块";
+                                d = "点击鼠标左键通过方框选择体素块，在所选区域外点击可取消选择。";
                                 break;
                             case "Magic Wand":
                                 d = "魔术棒";
@@ -480,13 +480,13 @@
                                 d = "上色";
                                 break;
                             case "Paint color by clicking or click-and-drag":
-                                d = "鼠标左键点击并拖动，可以用调色板中选择的颜色刷涂，修改体素块原本的颜色。双击可以将所有相邻的体素涂成与表面上所选体素块相同的颜色。";
+                                d = "按住左键涂刷体素块使其替换颜色。";
                                 break;
                             case "Paint Bucket":
                                 d = "填充";
                                 break;
                             case "Paint contiguous voxels with same color":
-                                d = "单次点击可以一键替换选中的体素块的颜色。双击可将所有体素涂成相同的颜色。";
+                                d = "将选中的体素块全部替换成指定的颜色。";
                                 break;
                             case "Color Picker":
                                 d = "取色";
@@ -559,7 +559,13 @@
                                 d = "删除颜色组";
                                 break;
                             case "Used colors will be moved to the default color card":
-                                d = "删除后，使用过的颜色将会被移动到默认色卡";
+                                d = "温馨提示：删除后，使用过的颜色将会被移动到默认色卡。";
+                                break;
+                            case "Save failed":
+                                d = "保存失败";
+                                break;
+                            case "Please check your network connection":
+                                d = "请检查您的网络连接状况。";
                                 break;
                         }
                         break;
