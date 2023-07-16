@@ -9,7 +9,7 @@
 // @name         新模型编辑器快捷键
 // @namespace    http://box3.codemao.cn/
 // @version      1.0.0
-// @description  新模型编辑器汉化！再也不担心看不懂英文了！
+// @description  新模型编辑器快捷键！再也不担心做模型做得慢了！
 // @author       小宏XeLa
 // @license      GPL
 // @match        *://dao3.fun/edit-model
